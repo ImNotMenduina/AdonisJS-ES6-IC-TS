@@ -20,7 +20,8 @@ export default class SignUpsController {
             password_confirmation : schema.string()
         })
 
-        try
+        const payload = await request.validate({schema : newPostSchema}) 
+       /*  try
         {
             const payload = await request.validate({schema : newPostSchema}) 
 
@@ -28,7 +29,7 @@ export default class SignUpsController {
         {
             response.badRequest(error.messages)
         } 
-        
+         */
         
     }
 }
