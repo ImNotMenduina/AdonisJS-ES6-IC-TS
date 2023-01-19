@@ -7,6 +7,37 @@
     <title>Login</title>
 </head>
 <body>
-    login
+
+    <section>
+        <!-- AQUI EU TO FAZENDO O FORMULARIO PRA PESSOA SE CADASTRAR NO SISTEMA , METODO POST E DB == SQLITE-->
+        <form action="/login" method="POST">
+
+            <div>
+                <label for="email"></label>
+                <input type="email" name="email" id="email"/>
+
+                @if(flashMessages.has('errors.email'))
+                {{ flashMessages.get('errors.email') }} </
+                @endif
+
+            </div>
+
+            <div>
+                <label for="password"></label>
+                <input type="password" name="password" id="password"/>
+
+                @if(flashMessages.has('errors.password'))
+                {{ flashMessages.get('errors.password') }} </
+                @endif
+
+            </div>
+
+            <div>
+                <input type="submit" value="Login">
+            </div>
+        </form>
+
+    </section>
+
 </body>
 </html>

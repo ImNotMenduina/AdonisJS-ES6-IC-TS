@@ -26,4 +26,8 @@ Route.get('/signup', async ({ view }) => {
 Route.get('login', async({view}) => {
   return view.render('auth/login')
 })
-Route.post('/signup' , 'SignUpsController.index')
+Route.post('/signup' , 'AuthController.signup')
+Route.post('/login' , 'AuthController.login')
+Route.get('/profile' , async({view}) => {
+  return view.render('profile')
+})
