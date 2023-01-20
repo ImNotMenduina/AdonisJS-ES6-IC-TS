@@ -24,10 +24,19 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
 
-Route.get('/signup' , async({view}) => {
+Route.get('/signup', async ({ view }) => {
   return view.render('auth/signup')
 })
 
-Route.post('/signup' , 'UsersignupsController.signup')
-//Route.post('/login' , 'UserloginsController.login')
+Route.get('/login', async ({ view }) => {
+  return view.render('auth/login')
+})
 
+Route.get('/admin', async ({ view }) => {
+  return view.render('admin/admin')
+})
+
+Route.post('/signup', 'UsersignupsController.signup')
+
+
+Route.post('/login' , 'UserloginsController.login')
