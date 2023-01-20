@@ -24,19 +24,20 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
 
-Route.get('/signup', async ({ view }) => {
-  return view.render('auth/signup')
-})
+Route.get('/signup', 'UsersignupsController.signupShow').as('auth.signup.show')
 
-Route.get('/login', async ({ view }) => {
-  return view.render('auth/login')
-})
+Route.get('/login', 'UserloginsController.loginShow').as('auth.login.show')
 
 Route.get('/admin', async ({ view }) => {
   return view.render('admin/admin')
 })
 
+Route.get('/dashboard', async ({ view }) => {
+  return view.render('user/dashboard')
+}).middleware('auth')
+
+//POSTS
+
 Route.post('/signup', 'UsersignupsController.signup')
-
-
-Route.post('/login' , 'UserloginsController.login')
+Route.post('/login', 'UserloginsController.login')
+Route.post('/logout', 'UserloginsController.logout')
