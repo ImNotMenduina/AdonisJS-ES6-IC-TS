@@ -1,7 +1,8 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import User from 'App/Models/User'
-import { AUTH } from 'sqlite3'
+import session from 'Config/session'
+/* import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import User from 'App/Models/User' */
+
 
 export default class UserloginsController {
   public async loginShow({ view }: HttpContextContract) {
@@ -9,7 +10,7 @@ export default class UserloginsController {
   }
 
   public async login(ctx: HttpContextContract) {
-    const validateData = await ctx.request.validate({
+    /* const validateData = await ctx.request.validate({
       schema: schema.create({
         email: schema.string({}, [rules.email()]),
         password: schema.string(),
@@ -19,18 +20,28 @@ export default class UserloginsController {
         'email.required': 'Email não encontrado',
         'password.required': 'Senha obrigatória',
       },
-    })
+    }) */ //NAO QUEREMOS VALIDAR NADA NO LOGIN
+    const {uid , password} = ctx.request.only(['uid' , 'password'])
+
 
     //const user = await User.findByOrFail('email', validateData.email)
 
     //AUTHENTICATION
+    try{
+      await ctx.auth.attempt(uid , password)
+    } catch( error ){
 
-    await ctx.auth.attempt(validateData.email, validateData.password)
-    return ctx.response.redirect('/dashboard')
+      ctx.session.flash('form' , 'Senha ou Email incorretos')
+
+      return ctx.response.redirect().back( )
+    }
+    return ctx.response.redirect('/')
+
   }
 
   public async logout(ctx: HttpContextContract) {
     await ctx.auth.logout()
-    return ctx.response.redirect('/login')
+
+    return ctx.response.redirect().toRoute('auth.login.show')
   }
 }

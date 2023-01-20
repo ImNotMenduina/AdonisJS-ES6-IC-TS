@@ -9,11 +9,8 @@
 <body>
 
 
-    @if(auth.isAuthenticated)
-          <h1>{{auth.user.name}}</h1>
-          <form action="/logout" method="post">
-              <input type="submit" value="Sign Out">
-          </form>
+    @if(auth.user)
+          <a href={{route('auth.logout')}}> Logout</a>
 
       @else
            <a href="/login">LOGIN</a>

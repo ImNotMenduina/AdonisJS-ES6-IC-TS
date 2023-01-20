@@ -11,12 +11,18 @@
   <section>
     <a href="/signup">Voltar</a>
 
-
     <h1>Login</h1>
     <div>
-      <form action="/login" method="post">
+
+      @if(flashMessages.has('form'))
+          <div role="alert">
+            {{flashMessages.get('form')}}
+          </div>
+      @endif
+
+      <form action={{ route('auth.login') }} method="post">
         <div>
-            <input type="text" name="email" id="loginField" placeholder="EMAIL">
+            <input type="text" name="uid" id="loginField" placeholder="EMAIL">
         </div>
 
         <div>

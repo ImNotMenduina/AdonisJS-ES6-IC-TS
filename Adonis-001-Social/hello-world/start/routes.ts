@@ -38,6 +38,6 @@ Route.get('/dashboard', async ({ view }) => {
 
 //POSTS
 
-Route.post('/signup', 'UsersignupsController.signup')
-Route.post('/login', 'UserloginsController.login')
-Route.post('/logout', 'UserloginsController.logout')
+Route.post('signup', 'UsersignupsController.signup').as('auth.signup')
+Route.post('login', 'UserloginsController.login').as('auth.login')
+Route.get('logout', 'UserloginsController.logout').as('auth.logout')
