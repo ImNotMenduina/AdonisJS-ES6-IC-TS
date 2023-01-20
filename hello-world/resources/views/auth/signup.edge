@@ -16,9 +16,9 @@
                 <input type="text" name="name" id="name"/>
 
                 @if(flashMessages.has('errors.name'))
-                {{ flashMessages.get('errors.name') }} </
+                {{ flashMessages.get('errors.name') }}
                 @endif
-                
+
 
             </div>
 
@@ -27,19 +27,19 @@
                 <input type="email" name="email" id="email"/>
 
                 @if(flashMessages.has('errors.email'))
-                {{ flashMessages.get('errors.email') }} </
+                {{ flashMessages.get('errors.email') }}
                 @endif
-                
+
             </div>
-            
+
             <div>
                 <label for="password"></label>
                 <input type="password" name="password" id="password"/>
 
                 @if(flashMessages.has('errors.password'))
-                {{ flashMessages.get('errors.password') }} </
+                {{ flashMessages.get('errors.password') }}
                 @endif
-                
+
             </div>
 
 
@@ -48,12 +48,12 @@
                 <input type="password_confirmation" name="password_confirmation" id="password_confirmation"/>
 
                 @if(flashMessages.has('errors.password_confirmation'))
-                {{ flashMessages.get('errors.password_confirmation') }} </
+                {{ flashMessages.get('errors.password_confirmation') }} 
                 @endif
-                
+
 
             </div>
-            
+
             <div>
                 <input type="submit" value="Sign Up">
             </div>
