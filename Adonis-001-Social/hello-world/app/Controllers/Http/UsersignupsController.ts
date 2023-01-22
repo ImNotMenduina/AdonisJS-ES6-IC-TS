@@ -13,12 +13,12 @@ export default class UsersignupsController {
     const validateData = await ctx.request.validate({
       schema: schema.create({
         username: schema.string([rules.minLength(3), rules.regex(/^[a-zA-Z0-9]+$/)]),
-        email: schema.string({ trim: true }, [rules.email() ,
+        email: schema.string({ trim: true }, [
+          rules.email(),
           rules.unique({ table: 'users', column: 'email', caseInsensitive: true }),
-
         ]),
         password: schema.string([rules.confirmed()]),
-        role_id: schema.number()
+        role_id: schema.number(),
       }),
 
       /* messages: {
@@ -29,7 +29,7 @@ export default class UsersignupsController {
       }, */
     })
 
-  /*   const dataModel = new User()
+    /*   const dataModel = new User()
     dataModel.username = validateData.username
     dataModel.email = validateData.email
     dataModel.password = validateData.password

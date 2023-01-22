@@ -3,7 +3,6 @@ import session from 'Config/session'
 /* import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User' */
 
-
 export default class UserloginsController {
   public async loginShow({ view }: HttpContextContract) {
     return view.render('auth/login')
@@ -21,22 +20,19 @@ export default class UserloginsController {
         'password.required': 'Senha obrigatória',
       },
     }) */ //NAO QUEREMOS VALIDAR NADA NO LOGIN
-    const {uid , password} = ctx.request.only(['uid' , 'password'])
-
+    const { uid, password } = ctx.request.only(['uid', 'password'])
 
     //const user = await User.findByOrFail('email', validateData.email)
 
     //AUTHENTICATION
-    try{
-      await ctx.auth.attempt(uid , password)
-    } catch( error ){
+    try {
+      await ctx.auth.attempt(uid, password)
+    } catch (error) {
+      ctx.session.flash('form', 'Senha ou Email incorretos')
 
-      ctx.session.flash('form' , 'Senha ou Email incorretos')
-
-      return ctx.response.redirect().back( )
+      return ctx.response.redirect().back()
     }
     return ctx.response.redirect('/')
-
   }
 
   public async logout(ctx: HttpContextContract) {

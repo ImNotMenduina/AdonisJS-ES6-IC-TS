@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.integer('role_id').unsigned().references('id').inTable('roles').defaultTo(Roles.USER)
       table.string('username').notNullable()
       table.string('email').unique().notNullable()
-      table.string('password' , 180).notNullable()
+      table.string('password', 180).notNullable()
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

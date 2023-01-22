@@ -1,5 +1,12 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, beforeSave, belongsTo, BelongsTo, computed } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column,
+  beforeSave,
+  belongsTo,
+  BelongsTo,
+  computed,
+} from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Role from './Role'
 import Roles from 'App/Enums/Roles'
@@ -27,12 +34,9 @@ export default class User extends BaseModel {
   public updatedAt: DateTime
 
   @computed()
-  public get isAdmin()
-  {
+  public get isAdmin() {
     return this.role_id === Roles.ADMIN
   }
-
-
 
   @belongsTo(() => Role)
   public role: BelongsTo<typeof Role>
