@@ -15,8 +15,10 @@ export default class UsersignupsController {
         username: schema.string([rules.minLength(3), rules.regex(/^[a-zA-Z0-9]+$/)]),
         email: schema.string({ trim: true }, [rules.email() ,
           rules.unique({ table: 'users', column: 'email', caseInsensitive: true }),
+
         ]),
         password: schema.string([rules.confirmed()]),
+        role_id: schema.number()
       }),
 
       /* messages: {

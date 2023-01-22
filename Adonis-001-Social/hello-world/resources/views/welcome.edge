@@ -16,6 +16,12 @@
            <a href="/login">LOGIN</a>
       @endif
 
+      @if(auth.user.role_id===2)
+        ADMIN USER {{auth.user.email}}
+      @else
+        REGULAR USER {{auth.user.email}}
+      @endif
+
 
 </body>
 </html>
