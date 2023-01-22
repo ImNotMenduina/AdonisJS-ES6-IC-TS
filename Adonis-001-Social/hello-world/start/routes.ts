@@ -41,3 +41,8 @@ Route.get('/dashboard', async ({ view }) => {
 Route.post('signup', 'UsersignupsController.signup').as('auth.signup')
 Route.post('login', 'UserloginsController.login').as('auth.login')
 Route.get('logout', 'UserloginsController.logout').as('auth.logout')
+
+Route.group(() =>{
+  Route.get('/manage' , 'ManagesController.manage').as('manage')
+  Route.patch('/:id/role' , 'ManagesController.role').as('role')
+}).prefix('users').as('users')
