@@ -7,13 +7,17 @@
 
       @if(auth.user.isAdmin)
         <div>
-          <p>ADM : {{auth.user.email}}</p>
-          <p>Nome : {{auth.user.username}}</p>
-
+          <p>USERNAME : {{auth.user.username}}</p>
+          <p>EMAIL : {{auth.user.email}}</p>
+          <small><p>Usuário : ADM</p></small>
         </div>
         <a href="{{route('users.manage')}}"> Gerenciar </a>
       @else
-        REGULAR USER {{auth.user.email}}
+      <div>
+        <p>USERNAME : {{auth.user.username}}</p>
+        <p>Email : {{auth.user.email}}</p>
+        <small><p>Usuário : Padrão</p></small>
+      </div>
       @endif
 
       @if(auth.user)

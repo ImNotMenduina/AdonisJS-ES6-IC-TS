@@ -48,6 +48,10 @@ input {
   padding: 10px;
 }
 
+#deleteButton {
+  background-color: rgba(247, 0, 0, 0.753);
+}
+
 .InputId {
   visibility: hidden;
 }

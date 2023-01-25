@@ -17,12 +17,10 @@
 | import './routes/customer''
 |
 */
-
-import { Request } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+  return view.render('auth/login')
 })
 
 Route.get('/signup', 'UsersignupsController.signupShow').as('auth.signup.show')
