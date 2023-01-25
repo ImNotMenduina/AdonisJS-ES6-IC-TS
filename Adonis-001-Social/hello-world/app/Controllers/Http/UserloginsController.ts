@@ -32,7 +32,7 @@ export default class UserloginsController {
 
       return ctx.response.redirect().back()
     }
-    return ctx.response.redirect('/')
+    return ctx.response.redirect('/dashboard')
   }
 
   public async logout(ctx: HttpContextContract) {
@@ -40,4 +40,6 @@ export default class UserloginsController {
 
     return ctx.response.redirect().toRoute('auth.login.show')
   }
+
+  public async update() {}
 }

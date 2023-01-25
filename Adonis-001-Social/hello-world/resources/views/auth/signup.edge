@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
+@layout('layout/app')
+
+@section('content')
 
   <section>
-    <a href="/admin">ADMIN</a>
+        {{--  <a href="/admin">ADMIN - </a>  --}}
     <a href="/login">LOGIN</a>
-    {{inspect(flashMessages.all())}}
+    {{--  {{inspect(flashMessages.all())}}    --}}
 
 
     <h1>Sign Up - Social</h1>
     <div>
       <form action={{route('auth.signup')}} method="post">
         <div>
-            <input type="text" name="username" id="username" placeholder="USERNAME"/>
+            <input type="text" name="username" placeholder="USERNAME"/>
         </div>
 
         <div>
@@ -33,13 +27,13 @@
           <input type="password" name="password_confirmation" id="password_confirmation" placeholder="SENHA">
         </div>
 
-        <div>
+       {{--   <div>
           <select name="role_id" id="">
             <option value="1">User</option>
             <option value="2">Admin</option>
           </select>
 
-        </div>
+        </div>  --}}
 
         <div>
           <input type="submit" value="Sign Up">
@@ -49,5 +43,5 @@
     </div>
   </section>
 
-</body>
-</html>
+  @endsection
+

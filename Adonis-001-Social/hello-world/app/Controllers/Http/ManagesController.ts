@@ -23,4 +23,41 @@ export default class ManagesController {
 
     await response.redirect().back()
   }
+
+  public async delete({ params, response }: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
+    await user.delete()
+    await response.redirect().back()
+  }
+
+  public async update_form_view({ view, params }: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
+    const state = {
+      editUser: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      },
+    }
+
+    return view.render('users/update', state)
+  }
+
+  public async updated({ request, response }: HttpContextContract) {
+    const schemaData = await schema.create({
+      id: schema.number(),
+      username: schema.string([rules.minLength(8)]),
+      email: schema.string([rules.email()]),
+    })
+    const data = await request.validate({ schema: schemaData })
+
+    const user = await User.findOrFail(data.id)
+
+    user.username = data.username
+    user.email = data.email
+
+    await user.save()
+
+    return response.redirect().toRoute('users.manage')
+  }
 }

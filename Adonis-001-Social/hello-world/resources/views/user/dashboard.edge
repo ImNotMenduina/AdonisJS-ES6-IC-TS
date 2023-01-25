@@ -1,28 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Welcome to Adonis</title>
-</head>
-<body>
+@layout('layout/app')
+
+@section('content')
 
 
-    @if(auth.user)
+
+
+      @if(auth.user.isAdmin)
+        <div>
+          <p>ADM : {{auth.user.email}}</p>
+          <p>Nome : {{auth.user.username}}</p>
+
+        </div>
+        <a href="{{route('users.manage')}}"> Gerenciar </a>
+      @else
+        REGULAR USER {{auth.user.email}}
+      @endif
+
+      @if(auth.user)
           <a href={{route('auth.logout')}}> Logout</a>
 
       @else
            <a href="/login">LOGIN</a>
       @endif
 
-      @if(auth.user.isAdmin)
-        <div>ADMIN USER => {{auth.user.email}}</div>
-        <a href="{{route('users.manage')}}"> Gerenciar </a>
-      @else
-        REGULAR USER {{auth.user.email}}
-      @endif
 
-
-</body>
-</html>
+      @endsection

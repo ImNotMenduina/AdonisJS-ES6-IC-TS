@@ -35,14 +35,24 @@
               </th>
               <th>{{ user.role_id}}</th>
               <th>{{ user.createdAt.toLocaleString() }}</th>
+
               <th>
-                {{--  laskl  --}}
+                <form action="{{route('users.delete_user' , {id: user.id}, {qs: {_method: 'DELETE' }}) }}" method="post">
+                      <input type="submit" value="DELETAR" class="deleteButton">
+                </form>
               </th>
+
+              <th>
+             <a href="{{route('users.update_form' , {id: user.id}) }}">Editar</a>
+              </th>
+
             </tr>
 
             @endeach
           </tbody>
         </table>
+
+        <a href="{{route('/dashboard')}}">Profile</a>
 
 
 

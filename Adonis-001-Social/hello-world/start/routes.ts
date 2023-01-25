@@ -18,6 +18,7 @@
 |
 */
 
+import { Request } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async ({ view }) => {
@@ -45,6 +46,19 @@ Route.get('logout', 'UserloginsController.logout').as('auth.logout')
 Route.group(() => {
   Route.get('/manage', 'ManagesController.manage').as('manage')
   Route.patch('/:id/role', 'ManagesController.role').as('role')
+  Route.delete('/:id', 'ManagesController.delete').as('delete_user')
+
+  //UPDATE
+  // Route.post('/:id' , 'ManagesController.update_user').as('update_user')
+  Route.get('/:id', 'ManagesController.update_form_view').as('update_form')
+  Route.post('', 'ManagesController.updated').as('updated')
+
+  /* Route.patch('/:id', 'ManagesController.update').as('update_user') */
 })
   .prefix('users')
   .as('users')
+
+/*   Route.get('/:id' , async({}) =>{
+    r
+  }).as('update_form')
+ */

@@ -18,7 +18,7 @@ export default class UsersignupsController {
           rules.unique({ table: 'users', column: 'email', caseInsensitive: true }),
         ]),
         password: schema.string([rules.confirmed()]),
-        role_id: schema.number(),
+        /* role_id: schema.number(), */
       }),
 
       /* messages: {

@@ -29,6 +29,33 @@ a {
   text-decoration: none;
 }
 
+.deleteButton {
+  background-color: red;
+}
+
+input[type='submit'] {
+  width: 100%;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  border: none;
+  background-color: #5a45ff;
+}
+
+input {
+  outline: none;
+  border: hidden;
+  padding: 10px;
+}
+
+.InputId {
+  visibility: hidden;
+}
+
+input[type='submit']:hover {
+  cursor: pointer;
+}
+
 main {
   max-width: 620px;
   margin: auto;
