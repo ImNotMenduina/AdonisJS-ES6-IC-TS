@@ -1,11 +1,12 @@
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
-
+import { UserFactory } from 'Database/factories'
 
 export default class SignupController {
     public async cadastro({request , response} : HttpContextContract)
     {
+      //trim remove os espaços brancos a esquerda
 
       const my_schema = schema.create({
         nome : schema.string([rules.minLength(3) , rules.trim() ]) ,
@@ -19,6 +20,7 @@ export default class SignupController {
 
         //validação body contra o schema criado anteriormente.
         //(Faz o match)
+
         const validation = await request.validate({
           schema : my_schema
         })
