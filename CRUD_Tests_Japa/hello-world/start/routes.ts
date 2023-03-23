@@ -24,6 +24,4 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
 
-
-
-
+Route.post('/signup', 'CadastroUsersController.cadastro')

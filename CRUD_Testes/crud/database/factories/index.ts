@@ -1,7 +1,7 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import User from 'App/Models/User'
-import { assert } from '@japa/assert'
-import { test } from '@japa/runner'
+/* import { assert } from '@japa/assert'
+import { test } from '@japa/runner' */
 
 export const UserFactory = Factory
   .define(User, ({ faker }) => {
@@ -10,7 +10,8 @@ export const UserFactory = Factory
       sobrenome: faker.internet.userName(),
       idade: Math.floor(Math.random() * 80) + 18 ,
       email: faker.internet.email(),
-      password: faker.internet.password(),
+      //password: '123',
+      //password_2: '123'
     }
   })
   .build()

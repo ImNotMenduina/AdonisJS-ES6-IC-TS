@@ -34,9 +34,5 @@
       "@japa/preset-adonis/build/adonis-typings",
       "@adonisjs/lucid"
     ]
-  },
-  "ts-node": {
-    "transpileOnly": true
   }
-
 }
