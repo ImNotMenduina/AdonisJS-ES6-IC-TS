@@ -9,9 +9,9 @@ export default class CadastroUsersController {
       //trim remove os espaços brancos a esquerda
 
       const my_schema = schema.create({
-        username : schema.string([rules.minLength(3) , rules.trim() ]) ,
+        username : schema.string([ rules.minLength(3) , rules.trim() ]) ,
         email : schema.string([ rules.email() , rules.unique({ table: 'users' , column: 'email'}) ]) ,
-        senha : schema.string([ rules.minLength(3) ])
+        senha : schema.string([ rules.minLength(6) ])
       })
 
       try{
