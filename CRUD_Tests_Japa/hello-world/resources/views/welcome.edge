@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdonisJS - A fully featured web framework for Node.js</title>
-  @entryPointStyles('app')
-  @entryPointScripts('app')
-</head>
-<body>
+@layout('layouts/main')
+@set('title', 'Home page')
 
-  <main>
+@section('body')
+  <section class="hero is-warning">
     <div>
 
       <h1 class="title"> Cadastro de Cliente </h1>
@@ -32,9 +25,64 @@
             <input type="password" name="senha" id="senha" placeholder="senha">
           </label>
 
+          <label for="patente">
+            <select name="patente" id="patente">
+              <option value="Ferro"> Ferro </option>
+              <option value="Bronze"> Bronze </option>
+              <option value="Prata"> Prata </option>
+              <option value="Ouro"> Ouro </option>
+              <option value="Platina"> Platina </option>
+              <option value="Diamante"> Diamante </option>
+              <option value="Ascendente"> Ascendente </option>
+              <option value="Imortal"> Imortal </option>
+              <option value="Radiante"> Radiante </option>
+            </select>
+          </label>
+
+          <label for="agentes">
+            <select id="agentes" name="agente" oninput="classe_agente(this.value)">
+
+              <option value="Astra" selected> Astra </option>
+              <option value="Breach"> Breach </option>
+              <option value="Brimstone"> Brimstone </option>
+              <option value="Chamber"> Chamber </option>
+              <option value="Cypher"> Cypher </option>
+              <option value="Fade"> Fade </option>
+              <option value="Jett"> Jett </option>
+              <option value="KAY/O"> KAY/O </option>
+              <option value="Killjoy"> Killjoy </option>
+              <option value="Neon"> Neon </option>
+              <option value="Omen"> Omen </option>
+              <option value="Phoenix"> Phoenix </option>
+              <option value="Raze"> Raze </option>
+              <option value="Reyna"> Reyna </option>
+              <option value="Sage"> Sage </option>
+              <option value="Skye"> Skye </option>
+              <option value="Sova"> Sova </option>
+              <option value="Viper"> Viper </option>
+              <option value="Yoru"> Yoru </option>
+
+            </select>
+
+          </label>
+
+          <input type="text" name="classe" id="classe" value="Smoker" readonly>
+
+          <label for="arma_fav">
+            <select name="arma_fav" id="arma_fav">
+              <option value="Phantom"> Phantom </option>
+              <option value="Vandal"> Vandal </option>
+              <option value="Spectre"> Spectre </option>
+              <option value="Operator"> Operator </option>
+              <option value="Sherif"> Sherif </option>
+              <option value="Ghost"> Ghost </option>
+            </select>
+          </label>
+
           <input type="submit" value="Enviar">
+
       </form>
     </div>
-  </main>
-</body>
-</html>
+  </section>
+@end
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  </head>
+  <body>
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    </nav>
+
+    @!section('body')
+
+    <footer class="footer">
+    </footer>
+
+  </body>
+
+  <script>
+    function classe_agente(x)
+    {
+      if(x == "Neon" || x == "Raze" || x == "Reyna" || x == "Yoru" || x == "Jett" || x == "Phoenix")
+        document.getElementById('classe').value = "Duelista"
+      else if(x == "Breach" || x == "Fade" || x == "KAY/O" || x == "Skye" || x == "Sova")
+        document.getElementById('classe').value = "Iniciador"
+      else if(x == "Chamber" || x == "Cypher" || x == "Killjoy" || x == "Sage")
+        document.getElementById('classe').value = "Sentinela"
+      else if(x == "Astra" || x == "Brimstone" || x == "Omen" || x == "Viper")
+        document.getElementById('classe').value = "Smoker"
+      else
+        document.getElementById('classe').value = ""
+    }
+  </script>
+
+</html>
