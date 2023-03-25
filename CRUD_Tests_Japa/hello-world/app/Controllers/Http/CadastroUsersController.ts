@@ -38,7 +38,6 @@ export default class CadastroUsersController {
       profile.arma_fav = validation.arma_fav
 
       await user.related('profile').save(profile)
-
     } catch (e) {
       response.badRequest(e.messages)
     }
