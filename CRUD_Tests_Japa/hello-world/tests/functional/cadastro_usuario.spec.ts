@@ -1,5 +1,6 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { test } from '@japa/runner'
+import { ProfileFactory, UserFactory } from 'Database/factories'
 
 test.group('Cadastro usuario', (group) => {
   //Insere os dados na table
@@ -9,32 +10,48 @@ test.group('Cadastro usuario', (group) => {
 
     return () => Database.rollbackGlobalTransaction()
   })
-
   // Write your test here
   test('espera-se -> email_valido', async ({ client }) => {
     const response = await client.post('/signup').form({
       username: 'Menduina19_TiroCerto',
       email: 'lucasmenduina.cc@gmail.com',
       senha: 'admin1999',
+      agente: 'Astra' ,
+      patente: 'Platina' ,
+      classe: 'Smoker' ,
+      arma_fav: 'Operator'
     })
-    //console.log(user.username)
+
     response.assertStatus(200)
   })
 
-  test('espera-se -> email_invalido', async ({ client }) => {
-    const response = await client.post('/signup').json({
-      username: 'MyNameIsMenduina123',
-      email: 'menduiña_cara_de_fuinha.com',
-      senha: 'lucas12345',
+  test('espera-se -> cadastro_invalido_email_já_consta', async ({ client }) => {
+
+    const signup =  await UserFactory.with('profile').create()
+
+    const response = await client.post('/signup').form({
+
+      username: 'HeadShot123' ,
+      email: signup.email,
+      senha:  'hs123456',
+      patente: 'Ouro' ,
+      agente: 'Omen',
+      classe:  'Smoker' ,
+      arma_fav: 'Phantom'
     })
 
-    response.assertStatus(400)
-  })
+   response.assertStatus(400)
+    })
+
   test('espera-se -> senha_invalida_min_6', async ({ client }) => {
     const response = await client.post('/signup').json({
       username: 'NO_Valorant1taptap',
       email: 'So_MatoComSkin@gmail.com',
       senha: 'vava1',
+      patente: 'Imortal' ,
+      agente: 'Cypher',
+      classe:  'Sentinela' ,
+      arma_fav: 'Ghost'
     })
 
     response.assertStatus(400)
@@ -45,8 +62,15 @@ test.group('Cadastro usuario', (group) => {
       username: 'Jô',
       email: 'jojoTodynho@gmail.com',
       senha: 'JOJO2023',
+      patente: 'Bronze' ,
+      agente: 'Sova',
+      classe:  'Iniciador' ,
+      arma_fav: 'Vandal'
     })
 
     response.assertStatus(400)
   })
+
+
+
 })

@@ -86,6 +86,7 @@ export const ProfileFactory = Factory.define(Profile, () => {
 
 export const UserFactory = Factory.define(User, ({ faker }) => {
   const fake_username = faker.internet.userName()
+
   return {
     username: fake_username,
     email: `${fake_username}@gmail.com`,
