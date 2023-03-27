@@ -42,4 +42,19 @@ export default class CadastroUsersController {
       response.badRequest(e.messages)
     }
   }
+
+  public async busca({ request, response, view }: HttpContextContract) {
+    const email = request.param('email')
+    const user = await User.findBy('email', email)
+    if (user != null)
+    {
+      const profile = await Profile.findByOrFail('user_id', user?.id)
+      return view.render('userStats', { user, profile })
+    }
+    else
+    {
+      response.badRequest()
+      return response.redirect().toRoute('/')
+    }
+}
 }

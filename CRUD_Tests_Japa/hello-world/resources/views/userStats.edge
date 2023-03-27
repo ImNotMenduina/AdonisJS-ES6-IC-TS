@@ -1,0 +1,19 @@
+@layout('layouts/main')
+@set('title', 'Home page')
+
+@section('body')
+  <section class="hero is-warning">
+    <div id="user">
+
+      <h1 class="title"> Player Stats </h1>
+      <p>username: {{user.username}}</p>
+      <p>email: {{user.email}}</p>
+      <p>patente: {{profile.patente}}</p>
+      <p>agente: {{profile.agente}}</p>
+      <p>classe: {{profile.classe}}</p>
+      <p>arma favorita: {{profile.arma_fav}}</p>
+
+    </div>
+  </section>
+@end
+
