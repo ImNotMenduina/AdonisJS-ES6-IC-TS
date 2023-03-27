@@ -1,0 +1,41 @@
+@layout('layouts/main')
+@set('title', 'Home page')
+
+@section('body')
+  <section class="hero is-warning">
+    <div id="user">
+
+      <table>
+        <tr>
+          <th>PLAYER</th>
+          <th>EMAIL</th>
+          <th>PATENTE</th>
+          <th>AGENTE</th>
+          <th>CLASSE</th>
+          <th>ARMA</th>
+          <th>Admin</th>
+        </tr>
+
+        @each(user in users)
+
+        <tr>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.profile.patente}}</td>
+          <td>{{user.profile.agente}}</td>
+          <td>{{user.profile.classe}}</td>
+          <td>{{user.profile.arma_fav}}</td>
+          <td>
+            <a href="#">Editar</a>
+            <a href="#">Deletar</a>
+          </td>
+        </tr>
+
+        @end
+
+      </table>
+
+    </div>
+  </section>
+@end
+

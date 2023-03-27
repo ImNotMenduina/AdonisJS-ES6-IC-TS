@@ -1,7 +1,7 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { test } from '@japa/runner'
 import { UserFactory } from 'Database/factories'
-import { assert } from '@japa/assert'
+//import { assert } from '@japa/assert'
 
 test.group('Cadastro usuario', (group) => {
   //Insere os dados na table
@@ -70,6 +70,7 @@ test.group('Cadastro usuario', (group) => {
     response.assertStatus(400)
   })
 
+  /*
   //////////////////////// BUSCA USUARIO
 
   test('espera-se -> encontrar o usuário inserido', async ({ client }) => {
@@ -78,10 +79,10 @@ test.group('Cadastro usuario', (group) => {
     response.assertStatus(200)
   })
 
-  test('espera-se -> usuário não encontrado', async ({ client, assert }) => {
+  test('espera-se -> usuário não encontrado', async ({ client }) => {
     await UserFactory.with('profile').createMany(15)
     const email_buscado = 'lucasmenduina.cc@gmail.com'
     const response = await client.get(`findUser/${email_buscado}`)
     response.assertStatus(400)
-  })
+  }) */
 })

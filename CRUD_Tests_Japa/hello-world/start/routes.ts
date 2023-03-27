@@ -26,3 +26,4 @@ Route.get('/', async ({ view }) => {
 
 Route.post('/signup', 'CadastroUsersController.cadastro')
 Route.get('/findUser/:email', 'CadastroUsersController.busca')
+Route.get('/readUsers', 'CadastroUsersController.read')

@@ -3,6 +3,7 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 import Profile from 'App/Models/Profile'
 import User from 'App/Models/User'
+import { profiler } from 'Config/app'
 
 export default class CadastroUsersController {
   public async cadastro({ request, response }: HttpContextContract) {
@@ -43,18 +44,19 @@ export default class CadastroUsersController {
     }
   }
 
-  public async busca({ request, response, view }: HttpContextContract) {
+  public async read({ view }: HttpContextContract) {
+    const users = await User.query().preload('profile')
+    return view.render('listUsers' , {users})
+  }
+  /*   public async busca({ request, response, view }: HttpContextContract) {
     const email = request.param('email')
     const user = await User.findBy('email', email)
-    if (user != null)
-    {
+    if (user != null) {
       const profile = await Profile.findByOrFail('user_id', user?.id)
       return view.render('userStats', { user, profile })
-    }
-    else
-    {
+    } else {
       response.badRequest()
       return response.redirect().toRoute('/')
     }
-}
+  } */
 }
