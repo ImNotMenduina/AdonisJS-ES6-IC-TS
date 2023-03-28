@@ -21,9 +21,14 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async ({ view }) => {
-  return view.render('home')
+  return view.render('userSignup')
 })
 
 Route.post('/signup', 'CadastroUsersController.cadastro')
-Route.get('/findUser/:email', 'CadastroUsersController.busca')
-Route.get('/readUsers', 'CadastroUsersController.read')
+Route.post('update/:id', 'CadastroUsersController.update')
+//Route.get('/findUser/:email', 'CadastroUsersController.busca')
+Route.get('/read', 'CadastroUsersController.read')
+Route.get('updateForm/:id', 'CadastroUsersController.updatePlayerForm')
+Route.get('delete/:id', 'CadastroUsersController.remove')
+
+

@@ -1,0 +1,112 @@
+@layout('layouts/main')
+
+    @set('title', 'Home page')
+    @section('body')
+
+
+
+      <section class="hero is-warning" id="sec1">
+        <div id="wr_form">
+          <a href="/read">Lista</a>
+          <h1 class="title"> Dados do Player </h1>
+          <p class="subtitle">
+            Update
+          </p>
+
+          <form action="{{ route('CadastroUsersController.update', {id : [user.id] }) }}" method="POST">
+
+            <div>
+              <label for="username">
+                <input type="text" name="username" id="username" placeholder="username" value={{user.username}}>
+              </label>
+            </div>
+
+            <div>
+              <label for="email">
+                <input type="text" name="email" id="email" placeholder="email" value={{user.email}} readonly>
+              </label>
+            </div>
+
+            <div>
+              <label for="senha">
+                <input type="password" name="senha" id="senha" placeholder="senha" value={{user.senha}}>
+              </label>
+            </div>
+
+            <div>
+              <span id="patente" hidden>{{user.profile.patente}}</span>
+              <label for="patentes">
+                <select name="patente" id="patentes">
+                  <option value="Ferro"> Ferro </option>
+                  <option value="Bronze"> Bronze </option>
+                  <option value="Prata"> Prata </option>
+                  <option value="Ouro"> Ouro </option>
+                  <option value="Platina"> Platina </option>
+                  <option value="Diamante"> Diamante </option>
+                  <option value="Ascendente"> Ascendente </option>
+                  <option value="Imortal"> Imortal </option>
+                  <option value="Radiante"> Radiante </option>
+                </select>
+              </label>
+            </div>
+
+            <div>
+              <span id="agente" hidden>{{user.profile.agente}}</span>
+              <label for="agentes">
+                <select id="agentes" name="agente">
+
+                  <option value="Astra" > Astra </option>
+                  <option value="Breach"> Breach </option>
+                  <option value="Brimstone"> Brimstone </option>
+                  <option value="Chamber"> Chamber </option>
+                  <option value="Cypher"> Cypher </option>
+                  <option value="Fade"> Fade </option>
+                  <option value="Jett"> Jett </option>
+                  <option value="KAY/O"> KAY/O </option>
+                  <option value="Killjoy"> Killjoy </option>
+                  <option value="Neon"> Neon </option>
+                  <option value="Omen"> Omen </option>
+                  <option value="Phoenix"> Phoenix </option>
+                  <option value="Raze"> Raze </option>
+                  <option value="Reyna"> Reyna </option>
+                  <option value="Sage"> Sage </option>
+                  <option value="Skye"> Skye </option>
+                  <option value="Sova"> Sova </option>
+                  <option value="Viper"> Viper </option>
+                  <option value="Yoru"> Yoru </option>
+
+                </select>
+
+              </label>
+            </div>
+
+            <div>
+              <input type="text" name="classe" id="classe" value="Smoker" readonly>
+            </div>
+
+            <div>
+              <span id="arma" hidden>{{user.profile.arma_fav}}</span>
+              <label for="arma_fav" >
+                <select name="arma_fav" id="arma_fav" value={{user.profile.arma_fav}}">
+                  <option value="Phantom"> Phantom </option>
+                  <option value="Vandal"> Vandal </option>
+                  <option value="Spectre"> Spectre </option>
+                  <option value="Operator"> Operator </option>
+                  <option value="Sherif"> Sherif </option>
+                  <option value="Ghost"> Ghost </option>
+                </select>
+              </label>
+            </div>
+
+            <div >
+              <input type="submit" value="Atualizar" class="bt_submit">
+            </div>
+
+          </form>
+        </div>
+      </section>
+    @end
+
+
+
+

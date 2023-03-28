@@ -3,7 +3,6 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 import Profile from 'App/Models/Profile'
 import User from 'App/Models/User'
-import { profiler } from 'Config/app'
 
 export default class CadastroUsersController {
   public async cadastro({ request, response }: HttpContextContract) {
@@ -46,17 +45,56 @@ export default class CadastroUsersController {
 
   public async read({ view }: HttpContextContract) {
     const users = await User.query().preload('profile')
-    return view.render('listUsers' , {users})
+    return view.render('usersList', { users })
   }
-  /*   public async busca({ request, response, view }: HttpContextContract) {
-    const email = request.param('email')
-    const user = await User.findBy('email', email)
-    if (user != null) {
-      const profile = await Profile.findByOrFail('user_id', user?.id)
-      return view.render('userStats', { user, profile })
-    } else {
-      response.badRequest()
-      return response.redirect().toRoute('/')
+
+  public async updatePlayerForm({ view, request }: HttpContextContract) {
+    const userID = await User.query().where('id', request.param('id')).preload('profile')
+    const user = userID[0]
+    //const users = await User.query().preload('profile')
+    return view.render('userUpdate', { user })
+  }
+
+  public async update({ request, response }: HttpContextContract) {
+    const user = await User.query().where('id', request.param('id'))
+    const profile = await Profile.query().where('user_id', request.param('id'))
+
+    const my_schema = schema.create({
+      username: schema.string([rules.minLength(3), rules.trim()]),
+      senha: schema.string([rules.minLength(6)]),
+      email: schema.string([rules.email(), rules.equalTo(user[0].email)]),
+      agente: schema.string(),
+      classe: schema.string(),
+      patente: schema.string(),
+      arma_fav: schema.string(),
+    })
+
+    try {
+      //validação body contra o schema criado anteriormente.
+      //(Faz o match)
+      const validation = await request.validate({
+        schema: my_schema,
+      })
+
+      user[0].username = validation.username
+      user[0].senha = validation.senha
+      user[0].email = validation.email
+      profile[0].patente = validation.patente
+      profile[0].agente = validation.agente
+      profile[0].classe = validation.classe
+      profile[0].arma_fav = validation.arma_fav
+      await user[0].related('profile').save(profile[0])
+
+      return response.redirect().toRoute('/read')
+    } catch (e) {
+      return response.badRequest(e.messages)
     }
-  } */
+  }
+
+  public async remove({ request, response }: HttpContextContract) {
+    const user = await User.findOrFail(request.param('id'))
+    await user.delete()
+
+    return response.redirect().toRoute('/read')
+  }
 }

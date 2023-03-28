@@ -79,7 +79,40 @@ main code {
   background: #e6e2ff;
 }
 
+#sec1 {
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 #wr_form {
-  background-color: #17161a;
-  border: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 2px;
+  border: none;
+}
+select {
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  border: none;
+  margin-bottom: 2px;
+  border-radius: 5px;
+}
+.bt_submit {
+  border-radius: 5px;
+}
+.bt_submit:hover {
+  background-color: #ff0000;
+  text-decoration-color: #e6e2ff;
 }

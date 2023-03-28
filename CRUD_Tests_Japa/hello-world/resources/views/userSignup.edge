@@ -2,11 +2,12 @@
 @set('title', 'Home page')
 
 @section('body')
+<a href="/read">read</a>
+
   <section class="hero is-warning">
     <div id="wr_form">
 
-      <h1 class="title"> Cadastro de Cliente </h1>
-
+      <h1 class="title"> Cadastro do Player </h1>
       <p class="subtitle">
         Cadastre-se para acessar as ferramentas disponiveis.
       </p>
@@ -40,7 +41,7 @@
           </label>
 
           <label for="agentes">
-            <select id="agentes" name="agente" oninput="classe_agente(this.value)">
+            <select id="agentes" name="agente">
 
               <option value="Astra" selected> Astra </option>
               <option value="Breach"> Breach </option>
@@ -84,5 +85,6 @@
       </form>
     </div>
   </section>
+
 @end
 
