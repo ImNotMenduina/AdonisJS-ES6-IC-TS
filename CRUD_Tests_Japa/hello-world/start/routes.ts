@@ -30,5 +30,3 @@ Route.post('update/:id', 'CadastroUsersController.update')
 Route.get('/read', 'CadastroUsersController.read')
 Route.get('updateForm/:id', 'CadastroUsersController.updatePlayerForm')
 Route.get('delete/:id', 'CadastroUsersController.remove')
-
-

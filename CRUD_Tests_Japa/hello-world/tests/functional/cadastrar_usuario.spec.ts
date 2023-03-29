@@ -1,9 +1,10 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { test } from '@japa/runner'
+import User from 'App/Models/User'
 import { UserFactory } from 'Database/factories'
 //import { assert } from '@japa/assert'
 
-test.group('Cadastro usuario', (group) => {
+test.group('Cadastrar usuario', (group) => {
   //Insere os dados na table
   //Ao fim dos testes remove os dados inseridos (estado anterior)
   group.each.setup(async () => {
@@ -12,21 +13,41 @@ test.group('Cadastro usuario', (group) => {
     return () => Database.rollbackGlobalTransaction()
   })
   // Write your test here
-  test('espera-se -> email_valido', async ({ client }) => {
+  test('espera-se -> cadastro_valido', async ({ client, assert }) => {
+    const user_username = 'Menduina19_TiroCerto'
+    const user_email = 'lucasmenduina.cc@gmail.com'
+    const user_senha = 'admin1999'
+    const user_patente = 'Platina'
+    const user_agente = 'Astra'
+    const user_classe = 'Smoker'
+    const user_arma = 'Vandal'
+
     const response = await client.post('/signup').form({
-      username: 'Menduina19_TiroCerto',
-      email: 'lucasmenduina.cc@gmail.com',
-      senha: 'admin1999',
-      agente: 'Astra',
-      patente: 'Platina',
-      classe: 'Smoker',
-      arma_fav: 'Operator',
+      username: user_username,
+      email: user_email,
+      senha: user_senha,
+      agente: user_agente,
+      patente: user_patente,
+      classe: user_classe,
+      arma_fav: user_arma,
     })
 
     response.assertStatus(200)
+
+    const userCreated = await User
+    .query()
+    .where('email', user_email)
+    .preload('profile')
+
+    assert.equal(userCreated[0].username, user_username)
+    assert.equal(userCreated[0].senha, user_senha)
+    assert.equal(userCreated[0].profile.patente, user_patente)
+    assert.equal(userCreated[0].profile.agente, user_agente)
+    assert.equal(userCreated[0].profile.classe, user_classe)
+    assert.equal(userCreated[0].profile.arma_fav, user_arma)
   })
 
-  test('espera-se -> cadastro_invalido_email_já_consta', async ({ client }) => {
+  test('espera-se -> cadastro_invalido_email_já_consta', async ({ client, assert }) => {
     const signup = await UserFactory.with('profile').create()
 
     const response = await client.post('/signup').form({
@@ -69,20 +90,4 @@ test.group('Cadastro usuario', (group) => {
 
     response.assertStatus(400)
   })
-
-  /*
-  //////////////////////// BUSCA USUARIO
-
-  test('espera-se -> encontrar o usuário inserido', async ({ client }) => {
-    const user = await UserFactory.with('profile').create()
-    const response = await client.get(`findUser/${user.email}`)
-    response.assertStatus(200)
-  })
-
-  test('espera-se -> usuário não encontrado', async ({ client }) => {
-    await UserFactory.with('profile').createMany(15)
-    const email_buscado = 'lucasmenduina.cc@gmail.com'
-    const response = await client.get(`findUser/${email_buscado}`)
-    response.assertStatus(400)
-  }) */
 })
