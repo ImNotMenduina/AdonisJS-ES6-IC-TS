@@ -17,6 +17,6 @@ test.group('Deletar usuario', (group) => {
 
     const findUser = await User.query().where('id', user.id).preload('profile')
 
-    assert.notExists(findUser[0])a
+    assert.notExists(findUser[0])
   })
 })
